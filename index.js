@@ -14,7 +14,14 @@ roll.addEventListener("click", function () {
   let diceImage = document.querySelector(".dice");
   diceImage.style.display = "block";
   diceImage.src = "dice-" + dice + ".png";
-});
+  if (dice !== 1) {
+    roundScore += dice;
+     document.querySelector( '#current-' + activePlayer).textContent = roundScore;
+    } else {
+      activePlayer === 0 ? activePlayer = 1 : activePlayer = 0
+      roundScore = 0
+}
+})
 
 document.querySelector("#score-0").textContent = "0";
 document.querySelector("#score-1").textContent = "0";
