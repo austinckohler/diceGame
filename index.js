@@ -81,3 +81,9 @@ function newGame() {
   document.querySelector(".player-1-panel").classList.remove("active");
   document.querySelector(".player-0-panel").classList.add("active");
 }
+
+// next step, player loses entire score when 2's are rolled back to back.
+
+//try adding a field where player can change the amount played too
+
+//add a second dice to the game
