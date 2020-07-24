@@ -1,6 +1,9 @@
 let scores, roundScore, activePlayer, activeGame;
 
+let gamePlayToScore = 0;
 newGame();
+let lastDice;
+let winningScore;
 
 const roll = document.querySelector(".btn-roll");
 roll.addEventListener("click", () => {
@@ -12,7 +15,11 @@ roll.addEventListener("click", () => {
     diceImage.style.display = "block";
     diceImage.src = "/photos/dice-" + dice + ".png";
     //update round score if dice rolled !== 1
-    if (dice !== 1) {
+    if (dice === 2 && lastDice === 2) {
+      scores[activePlayer] = 0;
+      document.querySelector("#score-" + activePlayer).textContent = "0";
+      nextPlayer();
+    } else if (dice !== 1) {
       roundScore += dice;
       document.querySelector(
         "#current-" + activePlayer
@@ -20,6 +27,7 @@ roll.addEventListener("click", () => {
     } else {
       nextPlayer();
     }
+    lastDice = dice;
   }
 });
 
@@ -31,9 +39,12 @@ holdDice.addEventListener("click", () => {
     //show on score
     document.querySelector("#score-" + activePlayer).textContent =
       scores[activePlayer];
+    let inputValue = document.querySelector("input").value;
+    inputValue ? (winningScore = inputValue) : (winningScore = 100);
     //check to see if score is 100
-    if (scores[activePlayer] >= 100) {
+    if (scores[activePlayer] >= winningScore) {
       winner();
+      document.querySelector("input").textContent = "";
     } else {
       nextPlayer();
     }
