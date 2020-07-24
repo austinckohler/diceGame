@@ -33,7 +33,6 @@ roll.addEventListener("click", () => {
     } else {
       nextPlayer();
     }
-    // lastDice = dice;
   }
 });
 
